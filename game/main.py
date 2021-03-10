@@ -24,6 +24,10 @@ snake_speed = 20
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
 
+def our_snake(snake_block, snake_list):
+    for x in snake_list:
+        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 2 - 200, 50])
@@ -37,6 +41,9 @@ def gameLoop():  # creating a function
 
     x1_change = 0
     y1_change = 0
+
+    snake_List = []
+    Length_of_snake = 1
 
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
@@ -79,12 +86,27 @@ def gameLoop():  # creating a function
         x1 += x1_change
         y1 += y1_change
         dis.fill(white)
-        pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-        pygame.draw.rect(dis, black, [x1, y1, snake_block, snake_block])
+        pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
+
+        snake_head = [x1, y1]
+        snake_List.append(snake_head)
+        if len(snake_List) > Length_of_snake:
+            del snake_List[0]
+
+        for x in snake_List[:-1]:
+            if x == snake_head:
+                game_close = True
+
+        our_snake(snake_block, snake_List)
+
         pygame.display.update()
 
         if x1 == foodx and y1 == foody:
             print("YES, my food!")
+
+            foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+            foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+            Length_of_snake += 1
         clock.tick(snake_speed)
 
     pygame.quit()
@@ -92,3 +114,5 @@ def gameLoop():  # creating a function
 
 
 gameLoop()
+
+
