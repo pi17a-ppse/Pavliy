@@ -10,8 +10,8 @@ black = (0, 0, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 
-dis_width = 800
-dis_height = 600
+dis_width = 500
+dis_height = 500
 
 dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('Snake Game')
@@ -19,7 +19,7 @@ pygame.display.set_caption('Snake Game')
 clock = pygame.time.Clock()
 
 snake_block = 10
-snake_speed = 30
+snake_speed = 20
 
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
@@ -45,7 +45,7 @@ def gameLoop():  # creating a function
 
         while game_close == True:
             dis.fill(white)
-            message("You Lost:( But you can -> Press Q-Quit or P-Play Again", red)
+            message("You Lost:( But you can: Press Q-Quit or P-Play Again", red)
             pygame.display.update()
 
             for event in pygame.event.get():
