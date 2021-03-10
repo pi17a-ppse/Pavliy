@@ -10,8 +10,8 @@ black = (0, 0, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 
-dis_width = 500
-dis_height = 500
+dis_width = 400
+dis_height = 600
 
 dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('Snake Game')
@@ -24,13 +24,16 @@ snake_speed = 20
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
 
+
 def our_snake(snake_block, snake_list):
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
+
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 2 - 200, 50])
+
 
 def gameLoop():  # creating a function
     game_over = False
@@ -42,15 +45,15 @@ def gameLoop():  # creating a function
     x1_change = 0
     y1_change = 0
 
-    snake_List = []
-    Length_of_snake = 1
+    snake_list = []
+    length_of_snake = 1
 
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
 
     while not game_over:
 
-        while game_close == True:
+        while game_close:
             dis.fill(white)
             message("You Lost:( But you can: Press Q-Quit or P-Play Again", red)
             pygame.display.update()
@@ -89,15 +92,15 @@ def gameLoop():  # creating a function
         pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
 
         snake_head = [x1, y1]
-        snake_List.append(snake_head)
-        if len(snake_List) > Length_of_snake:
-            del snake_List[0]
+        snake_list.append(snake_head)
+        if len(snake_list) > length_of_snake:
+            del snake_list[0]
 
-        for x in snake_List[:-1]:
+        for x in snake_list[:-1]:
             if x == snake_head:
                 game_close = True
 
-        our_snake(snake_block, snake_List)
+        our_snake(snake_block, snake_list)
 
         pygame.display.update()
 
@@ -106,7 +109,7 @@ def gameLoop():  # creating a function
 
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
-            Length_of_snake += 1
+            length_of_snake += 1
         clock.tick(snake_speed)
 
     pygame.quit()
@@ -114,5 +117,3 @@ def gameLoop():  # creating a function
 
 
 gameLoop()
-
-
