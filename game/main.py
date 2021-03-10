@@ -1,5 +1,4 @@
 import pygame
-import time
 import random
 
 pygame.init()
@@ -10,7 +9,7 @@ black = (0, 0, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 
-dis_width = 400
+dis_width = 500
 dis_height = 600
 
 dis = pygame.display.set_mode((dis_width, dis_height))
