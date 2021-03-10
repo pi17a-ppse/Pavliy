@@ -26,7 +26,7 @@ score_font = pygame.font.SysFont("meiryo", 45)
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 3, dis_height / 3])
+    dis.blit(mesg, [dis_width / 2 - 200, 50])
 
 def gameLoop():  # creating a function
     game_over = False
