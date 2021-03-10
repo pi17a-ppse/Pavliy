@@ -21,3 +21,12 @@ snake_speed = 15
 
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
+
+game_over = False
+while not game_over:
+    for event in pygame.event.get():
+        print(event)
+
+pygame.quit()
+quit()
+
