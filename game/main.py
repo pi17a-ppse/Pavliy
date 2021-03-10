@@ -24,6 +24,10 @@ snake_speed = 20
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
 
+def my_score(score):
+    value = score_font.render("Your Score: " + str(score), True, yellow)
+    dis.blit(value, [0, 0])
+
 def our_snake(snake_block, snake_list):
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
