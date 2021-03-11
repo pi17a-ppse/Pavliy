@@ -25,7 +25,7 @@ font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
 
 def my_score(score):
-    value = score_font.render("Your Score: " + str(score), True, yellow)
+    value = score_font.render("Your Score: " + str(score), True, black)
     dis.blit(value, [0, 0])
 
 def our_snake(snake_block, snake_list):
