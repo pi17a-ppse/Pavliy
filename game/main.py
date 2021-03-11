@@ -1,5 +1,4 @@
 import pygame
-import time
 import random
 
 pygame.init()
@@ -12,7 +11,7 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 
 dis_width = 500
-dis_height = 500
+dis_height = 600
 
 dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('Snake Game')
@@ -20,7 +19,7 @@ pygame.display.set_caption('Snake Game')
 clock = pygame.time.Clock()
 
 snake_block = 10
-snake_speed = 20
+snake_speed = 15
 
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
@@ -33,9 +32,11 @@ def our_snake(snake_block, snake_list):
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
+
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 2 - 200, 50])
+
 
 def gameLoop():  # creating a function
     game_over = False
@@ -47,7 +48,7 @@ def gameLoop():  # creating a function
     x1_change = 0
     y1_change = 0
 
-    snake_List = []
+    snake_list = []
     length_of_snake = 1
 
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
@@ -55,7 +56,7 @@ def gameLoop():  # creating a function
 
     while not game_over:
 
-        while game_close == True:
+        while game_close:
             dis.fill(white)
             message("You Lost:( But you can: Press Q-Quit or P-Play Again", red)
             my_score(length_of_snake - 1)
@@ -95,11 +96,11 @@ def gameLoop():  # creating a function
         pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
 
         snake_head = [x1, y1]
-        snake_List.append(snake_head)
-        if len(snake_List) > length_of_snake:
-            del snake_List[0]
+        snake_list.append(snake_head)
+        if len(snake_list) > length_of_snake:
+            del snake_list[0]
 
-        for x in snake_List[:-1]:
+        for x in snake_list[:-1]:
             if x == snake_head:
                 game_close = True
 
@@ -120,5 +121,3 @@ def gameLoop():  # creating a function
 
 
 gameLoop()
-
-
