@@ -18,27 +18,64 @@ pygame.display.set_caption('Snake Game')
 
 clock = pygame.time.Clock()
 
-snake_block = 10
+snake_block = 10  # count pixel
 snake_speed = 15
 
 font_style = pygame.font.SysFont("meiryo", 25)
 score_font = pygame.font.SysFont("meiryo", 45)
 
 def my_score(score):
+    """Shows your current score.
+
+    Parameters
+    ----------
+    score : str
+         Count of food that snake ate.
+
+    """
+
     value = score_font.render("Your Score: " + str(score), True, blue)
     dis.blit(value, [0, 0])
 
 def our_snake(snake_block, snake_list):
+    """Draw the snake.
+
+    Parameters
+    ----------
+    snake_block : int
+        Count pixel
+
+    snake_list : list
+        Length snake
+
+    """
+
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
 
 def message(msg, color):
+    """Show message at the end.
+
+    Parameters
+    ----------
+    msg : str
+        Message text
+
+    color : tuple[int, int, int]
+        Color text
+
+    """
+
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 2 - 200, 50])
 
 
 def gameLoop():  # creating a function
+    """Infinity loop. This function runs all mechanics of the game
+
+    """
+
     game_over = False
     game_close = False
 
