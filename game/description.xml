@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.1"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <info>
+    <title>Руководство программиста</title>
+  </info>
+  <section>
+    <info>
+      <title>Описание продукта</title>
+    </info>
+    <para>
+    Пользователь может управлять длинным, тонким существом, напоминающим змею, которое ползает по плоскости, собирая еду и избегая столкновения с собственным хвостом и краями игрового поля.
+    </para>
+      <para>
+        Каждый раз, когда змея съедает кусочек пищи, она становится длиннее, что постепенно усложняет игру. Пользователь управляет направлением движения головы змеи (обычно 4 направления: вверх, вниз, влево, вправо), а хвост змеи движется следом. Пользователь не может остановить движение змеи.
+      </para>
+    <example>
+    <title>Изменения направления головы змейки отвечает следующий код:</title>
+      <programlisting language="python">
+                for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_over = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    x1_change = -snake_block
+                    y1_change = 0
+                elif event.key == pygame.K_RIGHT:
+                    x1_change = snake_block
+                    y1_change = 0
+                elif event.key == pygame.K_UP:
+                    y1_change = -snake_block
+                    x1_change = 0
+                elif event.key == pygame.K_DOWN:
+                    y1_change = snake_block
+                    x1_change = 0
+      </programlisting>
+    </example>
+    <example>
+      <title>Если игра закончилась, можно выбрать, играть дальше или выйти из игры. За это отвечает следующий код:</title>
+      <programlisting language="python">
+                       while game_close:
+            dis.fill(white)
+            message("You Lost:( But you can: Press Q-Quit or P-Play Again", red)
+            my_score(length_of_snake - 1)
+            pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_q:
+                        game_over = True
+                        game_close = False
+                    if event.key == pygame.K_p:
+                        gameLoop()
+      </programlisting>
+    </example>
+    <example>
+      <title>Если змейка съела кусочек пищи, то она становится длиннее. Следующий кусочек появится в рандомном месте. За это отвечает следюущий код:</title>
+      <programlisting language="python">
+            if x1 == foodx and y1 == foody:
+              print("YES, my food!")
+
+              foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+              foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+              length_of_snake += 1
+      </programlisting>
+    </example>
+  </section>
+</chapter>
